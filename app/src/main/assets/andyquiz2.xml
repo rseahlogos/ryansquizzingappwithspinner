@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<quiz>
+    <question>
+        <stem>What month was Andy born in?</stem>
+        <answerA>August</answerA>
+        <answerB>September</answerB>
+        <answerC>October</answerC>
+        <answerD>November</answerD>
+        <key>October</key>
+    </question>
+    <question>
+        <stem>What month was Ryan born in?</stem>
+        <answerA>February</answerA>
+        <answerB>March</answerB>
+        <answerC>April</answerC>
+        <answerD>May</answerD>
+        <key>March</key>
+    </question>
+    <question>
+        <stem>What month was Yejin born in?</stem>
+        <answerA>November</answerA>
+        <answerB>December</answerB>
+        <answerC>January</answerC>
+        <answerD>February</answerD>
+        <key>November</key>
+    </question>
+    <question>
+        <stem>What month was Bryant born in?</stem>
+        <answerA>January</answerA>
+        <answerB>June</answerB>
+        <answerC>September</answerC>
+        <answerD>December</answerD>
+        <key>September</key>
+    </question>
+    <question>
+        <stem>What month was MinChan born in?</stem>
+        <answerA>July</answerA>
+        <answerB>August</answerB>
+        <answerC>September</answerC>
+        <answerD>October</answerD>
+        <key>September</key>
+    </question>
+    <question>
+        <stem>What is the first month in the year?</stem>
+        <answerA>January</answerA>
+        <answerB>December</answerB>
+        <answerC>July</answerC>
+        <answerD>August</answerD>
+        <key>January</key>
+    </question>
+    <question>
+        <stem>What is the last month in the year?</stem>
+        <answerA>January</answerA>
+        <answerB>December</answerB>
+        <answerC>July</answerC>
+        <answerD>August</answerD>
+        <key>December</key>
+    </question>
+    <question>
+        <stem>How often do leap years happen?</stem>
+        <answerA>Every 4 years</answerA>
+        <answerB>Every 8 years</answerB>
+        <answerC>Every 20 years</answerC>
+        <answerD>Every 100 years</answerD>
+        <key>Every 4 years</key>
+    </question>
+    <question>
+        <stem>How many years are a decade?</stem>
+        <answerA>5 years</answerA>
+        <answerB>10 years</answerB>
+        <answerC>25 years</answerC>
+        <answerD>100 years</answerD>
+        <key>10 years</key>
+    </question>
+    <question>
+        <stem>How many years are in a century?</stem>
+        <answerA>5 years</answerA>
+        <answerB>10 years</answerB>
+        <answerC>25 years</answerC>
+        <answerD>100 years</answerD>
+        <key>100 years</key>
+    </question>
+</quiz>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<quiz>
+    <question>
+        <stem>x = 5 + 3</stem>
+        <answerA>x = 5</answerA>
+        <answerB>x = 53</answerB>
+        <answerC>x = 8</answerC>
+        <answerD>x = 15</answerD>
+        <key>x = 8</key>
+    </question>
+    <question>
+        <stem>x^2 = 81</stem>
+        <answerA>x = 3</answerA>
+        <answerB>x = 27</answerB>
+        <answerC>x = 6</answerC>
+        <answerD>x = 9</answerD>
+        <key>x = 9</key>
+    </question>
+    <question>
+        <stem>x = 61 + 2 * 4</stem>
+        <answerA>x = 252</answerA>
+        <answerB>x = 0</answerB>
+        <answerC>x = -1</answerC>
+        <answerD>x = 69</answerD>
+        <key>x = 69</key>
+    </question>
+    <question>
+        <stem>x = 2^3</stem>
+        <answerA>x = 2</answerA>
+        <answerB>x = 4</answerB>
+        <answerC>x = 6</answerC>
+        <answerD>x = 8</answerD>
+        <key>x = 8</key>
+    </question>
+    <question>
+        <stem>x = 1 + 1</stem>
+        <answerA>x = 1</answerA>
+        <answerB>x = 11</answerB>
+        <answerC>x = 2</answerC>
+        <answerD>x = 22</answerD>
+        <key>x = 2</key>
+    </question>
+    <question>
+        <stem>5^x = 125</stem>
+        <answerA>x = 2</answerA>
+        <answerB>x = 3</answerB>
+        <answerC>x = 4</answerC>
+        <answerD>x = 5</answerD>
+        <key>x = 3</key>
+    </question>
+    <question>
+        <stem>x = 1 + 0</stem>
+        <answerA>x = 1</answerA>
+        <answerB>x = 0</answerB>
+        <answerC>x = -3</answerC>
+        <answerD>x = -1</answerD>
+        <key>x = 1</key>
+    </question>
+    <question>
+        <stem>x = 3 - 4 * 2</stem>
+        <answerA>x = 2</answerA>
+        <answerB>x = 5</answerB>
+        <answerC>x = -5</answerC>
+        <answerD>x = -2</answerD>
+        <key>x = -5</key>
+    </question>
+    <question>
+        <stem>2x = 4</stem>
+        <answerA>x = 1/2</answerA>
+        <answerB>x = 2</answerB>
+        <answerC>x = 4</answerC>
+        <answerD>x = 4/x</answerD>
+        <key>x = 2</key>
+    </question>
+    <question>
+        <stem>x = 9 + 1 / 10</stem>
+        <answerA>x = 1</answerA>
+        <answerB>x = 10</answerB>
+        <answerC>x = 9.1</answerC>
+        <answerD>x = 9</answerD>
+        <key>x = 9.1</key>
+    </question>
+</quiz>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quiz xmlns="">
+    <question>
+        <stem>What is 11+11</stem>
+        <answerA>1111</answerA>
+        <answerB>21</answerB>
+        <answerC>22</answerC>
+        <answerD>11</answerD>
+        <key>22</key>
+    </question>
+
+    <question>
+        <stem>What is 13*13?</stem>
+        <answerA>144</answerA>
+        <answerB>132</answerB>
+        <answerC>111</answerC>
+        <answerD>169</answerD>
+        <key>169</key>
+    </question>
+
+    <question>
+        <stem>What is 2*3?</stem>
+        <answerA>6</answerA>
+        <answerB>23</answerB>
+        <answerC>2+3-1+1-2</answerC>
+        <answerD>-5</answerD>
+        <key>6</key>
+    </question>
+
+    <question>
+        <stem>What word starts with the letter j?</stem>
+        <answerA>Joe</answerA>
+        <answerB>George</answerB>
+        <answerC>Ben</answerC>
+        <answerD>Harry</answerD>
+        <key>Joe</key>
+    </question>
+
+    <question>
+        <stem>What color is the sky?</stem>
+        <answerA>red</answerA>
+        <answerB>purple</answerB>
+        <answerC>blue</answerC>
+        <answerD>green</answerD>
+        <key>blue</key>
+    </question>
+
+    <question>
+        <stem>What word ryhmes with pork?</stem>
+        <answerA>park</answerA>
+        <answerB>poach</answerB>
+        <answerC>pear</answerC>
+        <answerD>fork</answerD>
+        <key>fork</key>
+    </question>
+
+    <question>
+        <stem>What period is Mobile App Developement class?</stem>
+        <answerA>Red</answerA>
+        <answerB>Orange</answerB>
+        <answerC>Yellow</answerC>
+        <answerD>Green</answerD>
+        <key>Red</key>
+    </question>
+
+    <question>
+        <stem>How many continents are there on Earth?</stem>
+        <answerA>6</answerA>
+        <answerB>7</answerB>
+        <answerC>5</answerC>
+        <answerD>4</answerD>
+        <key>7</key>
+    </question>
+
+    <question>
+        <stem>What is 2-3?</stem>
+        <answerA>-(-1)</answerA>
+        <answerB>-1</answerB>
+        <answerC>1</answerC>
+        <answerD>|-1|</answerD>
+        <key>-1</key>
+    </question>
+
+    <question>
+        <stem>How many questions have you answered so far?</stem>
+        <answerA>7</answerA>
+        <answerB>10</answerB>
+        <answerC>9</answerC>
+        <answerD>8</answerD>
+        <key>9</key>
+    </question>
+</quiz>
+
+
+

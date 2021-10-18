@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<quiz>
+    <question>
+        <stem>2^4</stem>
+        <answerA>8</answerA>
+        <answerB>12</answerB>
+        <answerC>4</answerC>
+        <answerD>16</answerD>
+        <key>16</key>
+    </question>
+    <question>
+        <stem>4 x 12</stem>
+        <answerA>26</answerA>
+        <answerB>16</answerB>
+        <answerC>48</answerC>
+        <answerD>36</answerD>
+        <key>48</key>
+    </question>
+    <question>
+        <stem>60/3</stem>
+        <answerA>2</answerA>
+        <answerB>20</answerB>
+        <answerC>20</answerC>
+        <answerD>10</answerD>
+        <key>20</key>
+    </question>
+    <question>
+        <stem>-3 x -5</stem>
+        <answerA>-15</answerA>
+        <answerB>15</answerB>
+        <answerC>8</answerC>
+        <answerD>-8</answerD>
+        <key>15</key>
+    </question>
+    <question>
+        <stem>1 - 4</stem>
+        <answerA>-3</answerA>
+        <answerB>3</answerB>
+        <answerC>200</answerC>
+        <answerD>24</answerD>
+        <key>-3</key>
+    </question>
+    <question>
+        <stem>x^2 = 169</stem>
+        <answerA>3</answerA>
+        <answerB>2</answerB>
+        <answerC>13</answerC>
+        <answerD>15</answerD>
+        <key>13</key>
+    </question>
+    <question>
+        <stem>7 - 5</stem>
+        <answerA>1</answerA>
+        <answerB>2</answerB>
+        <answerC>3</answerC>
+        <answerD>4</answerD>
+        <key>2</key>
+    </question>
+    <question>
+        <stem>4,000 + 4,000</stem>
+        <answerA>0</answerA>
+        <answerB>-3</answerB>
+        <answerC>8,000</answerC>
+        <answerD>5,000</answerD>
+        <key>8,000</key>
+    </question>
+    <question>
+        <stem>x + 5 = 5</stem>
+        <answerA>0</answerA>
+        <answerB>2</answerB>
+        <answerC>-0</answerC>
+        <answerD>4</answerD>
+        <key>0</key>
+    </question>
+    <question>
+        <stem>20 x 30 -2</stem>
+        <answerA>500</answerA>
+        <answerB>204</answerB>
+        <answerC>502</answerC>
+        <answerD>598</answerD>
+        <key>598</key>
+    </question>
+</quiz>

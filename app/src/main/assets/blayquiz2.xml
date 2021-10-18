@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<quiz xmlns="">
+    <question>
+        <stem>9+3</stem>
+        <answerA>12</answerA>
+        <answerB>87</answerB>
+        <answerC>54</answerC>
+        <answerD>6</answerD>
+        <key>12</key>
+    </question>
+    <question>
+        <stem>1+8</stem>
+        <answerA>9</answerA>
+        <answerB>3</answerB>
+        <answerC>-8</answerC>
+        <answerD>2</answerD>
+        <key>9</key>
+    </question>
+    <question>
+        <stem>what is nine?</stem>
+        <answerA>9</answerA>
+        <answerB>2</answerB>
+        <answerC>43</answerC>
+        <answerD>no</answerD>
+        <key>9</key>
+    </question>
+    <question>
+        <stem>what is nein?</stem>
+        <answerA>-no</answerA>
+        <answerB>9</answerB>
+        <answerC>23</answerC>
+        <answerD>yes</answerD>
+        <key>no</key>
+    </question>
+    <question>
+        <stem>sqrt(100)</stem>
+        <answerA>5</answerA>
+        <answerB>10</answerB>
+        <answerC>154</answerC>
+        <answerD>Ryan Seah</answerD>
+        <key>10</key>
+    </question>
+    <question>
+        <stem>How many letters in mail?</stem>
+        <answerA>4</answerA>
+        <answerB>7</answerB>
+        <answerC>23</answerC>
+        <answerD>6</answerD>
+        <key>4</key>
+    </question>
+    <question>
+        <stem>Finish the line, "be good, behave...</stem>
+        <answerA>beaver</answerA>
+        <answerB>be gone</answerB>
+        <answerC>bieber</answerC>
+        <answerD>joe</answerD>
+        <key>be gone</key>
+    </question>
+    <question>
+        <stem>arrays start at</stem>
+        <answerA>0</answerA>
+        <answerB>-1</answerB>
+        <answerC>-1</answerC>
+        <answerD>none</answerD>
+        <key>0</key>
+    </question>
+    <question>
+        <stem>Which one of these are Logos students?</stem>
+        <answerA>Ryan</answerA>
+        <answerB>Moses</answerB>
+        <answerC>Ryan Seah</answerC>
+        <answerD>Vicky</answerD>
+        <key>Ryan Seah</key>
+    </question>
+    <question>
+        <stem>Is Ryan Bald?</stem>
+        <answerA>Not right now</answerA>
+        <answerB>Yes</answerB>
+        <answerC>Maybe</answerC>
+        <answerD>8</answerD>
+        <key>Not right now</key>
+    </question>
+</quiz>

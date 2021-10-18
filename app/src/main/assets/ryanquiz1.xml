@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quiz xmlns="">
+    <question>
+        <stem>What is 9+10?</stem>
+        <answerA>21</answerA>
+        <answerB>19</answerB>
+        <answerC>20</answerC>
+        <answerD>910</answerD>
+        <key>19</key>
+    </question>
+
+    <question>
+        <stem>What is 1+1?</stem>
+        <answerA>1</answerA>
+        <answerB>2</answerB>
+        <answerC>11</answerC>
+        <answerD>0</answerD>
+        <key>2</key>
+    </question>
+
+    <question>
+        <stem>What is 2+3?</stem>
+        <answerA>5</answerA>
+        <answerB>23</answerB>
+        <answerC>2+3-1+1-2</answerC>
+        <answerD>-5</answerD>
+        <key>5</key>
+    </question>
+
+    <question>
+        <stem>What is 9x9?</stem>
+        <answerA>18</answerA>
+        <answerB>81.1</answerB>
+        <answerC>99</answerC>
+        <answerD>81</answerD>
+        <key>81</key>
+    </question>
+
+    <question>
+        <stem>What is 9+9?</stem>
+        <answerA>18</answerA>
+        <answerB>81.1</answerB>
+        <answerC>99</answerC>
+        <answerD>81</answerD>
+        <key>18</key>
+    </question>
+
+    <question>
+        <stem>What is 9/9?</stem>
+        <answerA>undefined</answerA>
+        <answerB>0</answerB>
+        <answerC>1</answerC>
+        <answerD>9</answerD>
+        <key>1</key>
+    </question>
+
+    <question>
+        <stem>What is sqrt9?</stem>
+        <answerA>3</answerA>
+        <answerB>-3.1</answerB>
+        <answerC>81</answerC>
+        <answerD>1</answerD>
+        <key>3</key>
+    </question>
+
+    <question>
+        <stem>Who is Mr. Skogens favorite student?</stem>
+        <answerA>Andy</answerA>
+        <answerB>Ryan</answerB>
+        <answerC>Bryant</answerC>
+        <answerD>Yejin</answerD>
+        <key>Ryan</key>
+    </question>
+
+    <question>
+        <stem>Who is Mr.Skogens favorite Logos teacher?</stem>
+        <answerA>Ms. Mendoza</answerA>
+        <answerB>Mr. Seah</answerB>
+        <answerC>Mr. Skogen</answerC>
+        <answerD>Mr. Barrett</answerD>
+        <key>Ms. Mendoza</key>
+    </question>
+
+    <question>
+        <stem>Who is going to get 100% on this assignment?</stem>
+        <answerA>Bryant</answerA>
+        <answerB>Ryan</answerB>
+        <answerC>Yejin</answerC>
+        <answerD>Andy</answerD>
+        <key>Ryan</key>
+    </question>
+</quiz>
+
+
+

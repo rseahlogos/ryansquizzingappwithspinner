@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<quiz>
+    <question>
+        <stem>What do cows eat?</stem>
+        <answerA>Grass</answerA>
+        <answerB>Porkchop</answerB>
+        <answerC>Chicken</answerC>
+        <answerD>Doritos</answerD>
+        <key>Grass</key>
+    </question>
+    <question>
+        <stem>How many sections does a cow's stomache have?</stem>
+        <answerA>1</answerA>
+        <answerB>2</answerB>
+        <answerC>3</answerC>
+        <answerD>4</answerD>
+        <key>4</key>
+    </question>
+    <question>
+        <stem>How many adult teeth does a cow have</stem>
+        <answerA>24</answerA>
+        <answerB>30</answerB>
+        <answerC>32</answerC>
+        <answerD>64</answerD>
+        <key>32</key>
+    </question>
+    <question>
+        <stem>What do you call cow meat?</stem>
+        <answerA>Pork</answerA>
+        <answerB>Chicken</answerB>
+        <answerC>Beef</answerC>
+        <answerD>Mutton</answerD>
+        <key>Beef</key>
+    </question>
+    <question>
+        <stem>What is the lifespan of a cow?</stem>
+        <answerA>2 to 5 years</answerA>
+        <answerB>5 to 11 years</answerB>
+        <answerC>11 to 18 years</answerC>
+        <answerD>18 to 22 years</answerD>
+        <key>18 to 22 years</key>
+    </question>
+    <question>
+        <stem>What is the scientific name of a cow?</stem>
+        <answerA>Sus</answerA>
+        <answerB>Bos taurus</answerB>
+        <answerC>Rattus</answerC>
+        <answerD>Mammuthus</answerD>
+        <key>Bos taurus</key>
+    </question>
+    <question>
+        <stem>How much milk does the average cow in the US produce?</stem>
+        <answerA>7.5 gallons</answerA>
+        <answerB>10 gallons</answerB>
+        <answerC>30 gallons</answerC>
+        <answerD>54.5 gallons</answerD>
+        <key>7.5</key>
+    </question>
+    <question>
+        <stem>Around how many different breeds of cows have been discovered?</stem>
+        <answerA>5</answerA>
+        <answerB>10</answerB>
+        <answerC>100</answerC>
+        <answerD>250</answerD>
+        <key>250</key>
+    </question>
+    <question>
+        <stem>Are all cows female?</stem>
+        <answerA>Yes</answerA>
+        <answerB>No</answerB>
+        <answerC>Maybe</answerC>
+        <answerD>You tell me</answerD>
+        <key>Yes</key>
+    </question>
+    <question>
+        <stem>What is the coolest animal that exists?</stem>
+        <answerA>Rat</answerA>
+        <answerB>Cow</answerB>
+        <answerC>Dog</answerC>
+        <answerD>Pig</answerD>
+        <key>Cow</key>
+    </question>
+</quiz>

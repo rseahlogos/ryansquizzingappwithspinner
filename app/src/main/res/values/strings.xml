@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Ryan\'s Quizzing App</string>
+
+    <string-array name="quizzes">
+        <item>andyquiz1.xml</item>
+        <item>andyquiz2.xml</item>
+        <item>blayquiz1.xml</item>
+        <item>blayquiz2.xml</item>
+        <item>minchanquiz1.xml</item>
+        <item>minchanquiz2.xml</item>
+        <item>ryanquiz1.xml</item>
+        <item>ryanquiz2.xml</item>
+        <item>ycquiz1.xml</item>
+        <item>ycquiz2.xml</item>
+
+    </string-array>
+</resources>

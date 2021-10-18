@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<quiz>
+    <question>
+        <stem>which grade is the best class?</stem>
+        <answerA>seniors</answerA>
+        <answerB>juniors</answerB>
+        <answerC>sophmores</answerC>
+        <answerD>freshman</answerD>
+        <key>seniors</key>
+    </question>
+    <question>
+        <stem>which class is the best class?</stem>
+        <answerA>app dev.</answerA>
+        <answerB>art</answerB>
+        <answerC>pe</answerC>
+        <answerD>ap biology</answerD>
+        <key>app dev.</key>
+    </question>
+    <question>
+        <stem>who is our favorite teacher?</stem>
+        <answerA>mr. Skogen</answerA>
+        <answerB>mr. Barrett</answerB>
+        <answerC>ms. Mendoza</answerC>
+        <answerD>mrs. Stanley</answerD>
+        <key>mr. Skogen</key>
+    </question>
+    <question>
+        <stem>what period is our class?</stem>
+        <answerA>red</answerA>
+        <answerB>orange</answerB>
+        <answerC>navy</answerC>
+        <answerD>black</answerD>
+        <key>red</key>
+    </question>
+    <question>
+        <stem>how long are online classes?</stem>
+        <answerA>65 hours</answerA>
+        <answerB>45 hours</answerB>
+        <answerC>10 minutes</answerC>
+        <answerD>45 minutes</answerD>
+        <key>45 minutes</key>
+    </question>
+    <question>
+        <stem>who is NOT in our class?</stem>
+        <answerA>andy</answerA>
+        <answerB>ryan</answerB>
+        <answerC>visal</answerC>
+        <answerD>yejin</answerD>
+        <key>visal</key>
+    </question>
+    <question>
+        <stem>when is the junior class graudating?</stem>
+        <answerA>2022 summer</answerA>
+        <answerB>2023 winter</answerB>
+        <answerC>2022 winter</answerC>
+        <answerD>2023 summer</answerD>
+        <key>2023 summer</key>
+    </question>
+    <question>
+        <stem>when is the senior class graudating?</stem>
+        <answerA>2022 summer</answerA>
+        <answerB>2021 summer</answerB>
+        <answerC>2021 winter</answerC>
+        <answerD>2022 winter</answerD>
+        <key>2022 summer</key>
+    </question>
+    <question>
+        <stem>when is this quiz over?</stem>
+        <answerA>now</answerA>
+        <answerB>soon</answerB>
+        <answerC>never</answerC>
+        <answerD>one more after this</answerD>
+        <key>one more after this</key>
+    </question>
+    <question>
+        <stem>are we finished?</stem>
+        <answerA>no</answerA>
+        <answerB>yes</answerB>
+        <answerC>maybe</answerC>
+        <answerD>never</answerD>
+        <key>yes</key>
+    </question>
+</quiz>

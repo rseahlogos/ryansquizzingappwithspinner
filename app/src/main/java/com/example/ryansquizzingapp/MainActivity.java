@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,8 +23,13 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -32,8 +40,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String[] questions;
     String[][] answers;
     Button buttons[] = {null, null, null, null};
-    TextView text1, score;
+    TextView text1, score, html;
     int guesses[] = {0};
+
+    URL url;
+    InputStream is = null;
+    BufferedReader br;
+    String line;
+
 
 
     @Override
@@ -49,6 +63,39 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         run("ryanquiz1.xml");
+        html = (TextView) findViewById(R.id.html);
+        /*String htmlcode="";
+        try {
+            url = new URL("https://sites.google.com/asianhope.org/mobileresources");
+            is = url.openStream();  // throws an IOException
+            br = new BufferedReader(new InputStreamReader(is));
+
+            while ((line = br.readLine()) != null) {
+                //System.out.println(line);
+                htmlcode=htmlcode.concat(line);
+            }
+        } catch (
+                MalformedURLException mue) {
+            mue.printStackTrace();
+        } catch (
+                IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            try {
+                if (is != null) is.close();
+            } catch (IOException ioe) {
+                // nothing to see here
+            }
+        }
+        html.setText(htmlcode);
+        */
+        Ion.with(getApplicationContext()).load("https://sites.google.com/asianhope.org/mobileresources").asString().setCallback(new FutureCallback<String>() {
+            @Override
+            public void onCompleted(Exception e, String result) {
+
+                html.setText(result);
+            }
+        });
 
 
     }
@@ -162,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    private static String getValue(String tag, Element element) {
+    private String getValue(String tag, Element element) {
         NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = nodeList.item(0);
         return node.getNodeValue();
@@ -199,7 +246,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-}
+    }
+
 
 //emergency code incase im bad at life
 /*

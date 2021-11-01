@@ -2,6 +2,13 @@ package com.example.ryansquizzingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jsoup.Jsoup;
+import org.jsoup.helper.Validate;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
+
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +22,9 @@ import android.widget.TextView;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import org.jsoup.Jsoup;
+//import org.w3c.dom.Document;
+//import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xmlpull.v1.XmlPullParser;
@@ -30,6 +38,9 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -64,41 +75,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
         run("ryanquiz1.xml");
         html = (TextView) findViewById(R.id.html);
-        /*String htmlcode="";
-        try {
-            url = new URL("https://sites.google.com/asianhope.org/mobileresources");
-            is = url.openStream();  // throws an IOException
-            br = new BufferedReader(new InputStreamReader(is));
-
-            while ((line = br.readLine()) != null) {
-                //System.out.println(line);
-                htmlcode=htmlcode.concat(line);
-            }
-        } catch (
-                MalformedURLException mue) {
-            mue.printStackTrace();
-        } catch (
-                IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-            try {
-                if (is != null) is.close();
-            } catch (IOException ioe) {
-                // nothing to see here
-            }
-        }
-        html.setText(htmlcode);
-        */
+        /*
         Ion.with(getApplicationContext()).load("https://sites.google.com/asianhope.org/mobileresources").asString().setCallback(new FutureCallback<String>() {
             @Override
             public void onCompleted(Exception e, String result) {
 
                 html.setText(result);
             }
-        });
-
+        }); */
 
     }
+
     private void run (String quizname) {
         try {
 
@@ -106,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(is);
-            Element element=doc.getDocumentElement();
+            org.w3c.dom.Document doc = dBuilder.parse(is);
+            org.w3c.dom.Element element=doc.getDocumentElement();
             element.normalize();
 
             NodeList nList = doc.getElementsByTagName("question");
@@ -125,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 Node node = nList.item(p);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element2 = (Element) node;
+                    org.w3c.dom.Element element2 = (org.w3c.dom.Element) node;
                     questions[p]=getValue("stem", element2);
                     answers[p][0]=getValue("answerA", element2);
                     answers[p][1]=getValue("answerB", element2);
@@ -209,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    private String getValue(String tag, Element element) {
+    private String getValue(String tag, org.w3c.dom.Element element) {
         NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = nodeList.item(0);
         return node.getNodeValue();
@@ -245,6 +232,52 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+    public static class Extractor {
+        public static void main(String[] args) throws IOException {
+            Document doc = Jsoup.connect("https://sites.google.com/asianhope.org/mobileresources/home").get();
+            Elements links =doc.select("a[href]");
+            Set<String> quizLinks = new HashSet<String>();
+            for(Element link:links)
+            {
+                if(link.attr("href").contains("mobileresources/q"))
+                {
+                    quizLinks.add("https://sites.google.com"+link.attr("href"));
+                }
+            }
+            System.out.println(quizLinks.size()+" quizzes found");
+            ArrayList<String> quizzes = new ArrayList<String>();
+            for(String url:quizLinks)
+            {
+                System.out.println("connecting to "+url);
+                doc = Jsoup.connect(url).get();
+                quizzes.add( extractQuiz(doc.html()));
+
+            }
+            System.out.println(quizzes.size()+" quizzes extracted");
+
+        }
+
+        private static String extractQuiz(String html) throws IOException {
+            boolean strictMode = true;
+            String paragraphTagOpen = "<p[^>]+>";
+            String paragraphTagClose = "</p[^>]*>";
+            String quizTagOpen = "<quiz";
+            String quizTagClose ="</quiz>";
+
+
+
+            String quiz = html;
+            quiz = Parser.unescapeEntities(quiz, strictMode);
+            int beginQuizXml = quiz.lastIndexOf(quizTagOpen);
+            int endQuizXml = quiz.lastIndexOf(quizTagClose) + quizTagClose.length();
+
+            Validate.isTrue(beginQuizXml>=0&&endQuizXml>=0," quiz not found ");
+
+            quiz = quiz.substring(beginQuizXml, endQuizXml).replaceAll(paragraphTagOpen, "")
+                    .replaceAll(paragraphTagClose, "").trim();
+            return quiz;
+        }
     }
     }
 

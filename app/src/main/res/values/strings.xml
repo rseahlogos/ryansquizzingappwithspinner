@@ -2,16 +2,16 @@
     <string name="app_name">Ryan\'s Quizzing App</string>
 
     <string-array name="quizzes">
-        <item>andyquiz1.xml</item>
-        <item>andyquiz2.xml</item>
-        <item>blayquiz1.xml</item>
-        <item>blayquiz2.xml</item>
-        <item>minchanquiz1.xml</item>
-        <item>minchanquiz2.xml</item>
-        <item>ryanquiz1.xml</item>
-        <item>ryanquiz2.xml</item>
-        <item>ycquiz1.xml</item>
-        <item>ycquiz2.xml</item>
+        <item>q1</item>
+        <item>q2</item>
+        <item>q3</item>
+        <item>q4</item>
+        <item>q5</item>
+        <item>q6</item>
+        <item>q7</item>
+        <item>q8</item>
+        <item>q9</item>
+        <item>q10</item>
 
     </string-array>
 </resources>

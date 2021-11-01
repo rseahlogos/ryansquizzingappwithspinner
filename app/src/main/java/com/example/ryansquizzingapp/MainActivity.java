@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     static TextView html1;
     int guesses[] = {0};
     boolean flag1= false;
+    Button change;
 
     URL url;
     InputStream is = null;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<String> quizzes1;
     ArrayList<String> quizzes2;
     ArrayList<String> quizNames;
+    String changequiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
         //run("ryanquiz1.xml");
         html1 = (TextView) findViewById(R.id.html1);
+        change = (Button) findViewById(R.id.change);
 
+
+        change.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                run(changequiz);
+            }
+        });
         /*
         Ion.with(getApplicationContext()).load("https://sites.google.com/asianhope.org/mobileresources").asString().setCallback(new FutureCallback<String>() {
             @Override
@@ -161,8 +170,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 //html.setText(extractQuiz(doc.html()));
 
             }
-            flag1=true;
-            run("ryanquiz1.xml");
+
+            //run("q1");
 
             return null;
         }
@@ -180,9 +189,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         try {
 
             // html1.setText(quizzes1.get(0));
-           // String deez= quizzes2.get(quizNames.indexOf(quizname));
-          //  InputStream is = new ByteArrayInputStream(deez.getBytes(Charset.forName("UTF-8")));
-            InputStream is = getAssets().open(quizname);
+            String deez= quizzes2.get(quizNames.indexOf(quizname));
+            InputStream is = new ByteArrayInputStream(deez.getBytes(Charset.forName("UTF-8")));
+            //InputStream is = getAssets().open(quizname);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -288,6 +297,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+
     private String getValue(String tag, org.w3c.dom.Element element) {
         NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = nodeList.item(0);
@@ -317,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
-        run(text);
+        changequiz=text;
     }
 
     @Override

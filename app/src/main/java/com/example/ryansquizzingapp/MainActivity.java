@@ -10,7 +10,6 @@ import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,24 +18,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-
-import org.jsoup.Jsoup;
 //import org.w3c.dom.Document;
 //import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -68,8 +57,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //extractor test
+
+        //
+
         Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quizzes, android.R.layout.simple_spinner_item);
+             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quizzes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -234,6 +227,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
     public static class Extractor {
+        private static ArrayList<String> quizzes;
+
         public static void main(String[] args) throws IOException {
             Document doc = Jsoup.connect("https://sites.google.com/asianhope.org/mobileresources/home").get();
             Elements links =doc.select("a[href]");
@@ -246,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
             System.out.println(quizLinks.size()+" quizzes found");
-            ArrayList<String> quizzes = new ArrayList<String>();
+            quizzes = new ArrayList<String>();
             for(String url:quizLinks)
             {
                 System.out.println("connecting to "+url);
@@ -277,6 +272,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             quiz = quiz.substring(beginQuizXml, endQuizXml).replaceAll(paragraphTagOpen, "")
                     .replaceAll(paragraphTagClose, "").trim();
             return quiz;
+        }
+        public static ArrayList<String> getQuizzes(){
+            return quizzes;
         }
     }
     }

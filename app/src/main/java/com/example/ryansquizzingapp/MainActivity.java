@@ -10,6 +10,7 @@ import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,9 +25,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,20 +38,24 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    int score1=0;
+    int score1 = 0;
     String answer;
     String[] questions;
     String[][] answers;
     Button buttons[] = {null, null, null, null};
-    TextView text1, score, html;
+    TextView text1;
+    TextView score;
+    static TextView html1;
     int guesses[] = {0};
+    boolean flag1= false;
 
     URL url;
     InputStream is = null;
     BufferedReader br;
     String line;
-
-
+    ArrayList<String> quizzes1;
+    ArrayList<String> quizzes2;
+    ArrayList<String> quizNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +65,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         //extractor test
-
+        new Content().execute();
         //
+        /*
+        <item>andyquiz1.xml</item>
+        <item>andyquiz2.xml</item>
+        <item>blayquiz1.xml</item>
+        <item>blayquiz2.xml</item>
+        <item>minchanquiz1.xml</item>
+        <item>minchanquiz2.xml</item>
+        <item>ryanquiz1.xml</item>
+        <item>ryanquiz2.xml</item>
+        <item>ycquiz1.xml</item>
+        <item>ycquiz2.xml</item>
+         */
 
         Spinner spinner = findViewById(R.id.spinner);
-             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quizzes, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quizzes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        run("ryanquiz1.xml");
-        html = (TextView) findViewById(R.id.html);
+        //run("ryanquiz1.xml");
+        html1 = (TextView) findViewById(R.id.html1);
+
         /*
         Ion.with(getApplicationContext()).load("https://sites.google.com/asianhope.org/mobileresources").asString().setCallback(new FutureCallback<String>() {
             @Override
@@ -76,43 +96,123 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 html.setText(result);
             }
         }); */
-
+        // Extractor.getQuizzes(1);
     }
+    private class Content extends AsyncTask<Void, Void, Void> {
 
-    private void run (String quizname) {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            Document doc = null;
+            try {
+                doc = Jsoup.connect("https://sites.google.com/asianhope.org/mobileresources/home").get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Elements links =doc.select("a[href]");
+            Set<String> quizLinks = new HashSet<String>();
+            quizNames = new ArrayList<String>();
+            for(Element link:links)
+            {
+                if(link.attr("href").contains("mobileresources/q"))
+                {
+                    quizLinks.add("https://sites.google.com"+link.attr("href"));
+
+                    quizNames.add(link.text());
+                }
+            }
+            System.out.println(quizLinks.size()+" quizzes found");
+            quizzes1 = new ArrayList<String>();
+            for(String url:quizLinks)
+            {
+                System.out.println("connecting to "+url);
+                try {
+                    doc = Jsoup.connect(url).get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //
+                boolean strictMode = true;
+                String paragraphTagOpen = "<p[^>]+>";
+                String paragraphTagClose = "</p[^>]*>";
+                String quizTagOpen = "<quiz";
+                String quizTagClose ="</quiz>";
+
+
+
+                String quiz = doc.html();
+                quiz = Parser.unescapeEntities(quiz, strictMode);
+                int beginQuizXml = quiz.lastIndexOf(quizTagOpen);
+                int endQuizXml = quiz.lastIndexOf(quizTagClose) + quizTagClose.length();
+
+                Validate.isTrue(beginQuizXml>=0&&endQuizXml>=0," quiz not found ");
+
+                quiz = quiz.substring(beginQuizXml, endQuizXml).replaceAll(paragraphTagOpen, "")
+                        .replaceAll(paragraphTagClose, "").trim();
+                //
+                quizzes1.add(quiz);
+                //html1.setText(quizNames.get(0));
+                //html1.setText(quizzes1.get(0));
+                //html.setText(extractQuiz(doc.html()));
+
+            }
+            flag1=true;
+            run("ryanquiz1.xml");
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            quizzes2=quizzes1;
+            //run("ryanquiz.xml1");
+
+
+        }
+    }
+    private void run(String quizname) {
         try {
 
+            // html1.setText(quizzes1.get(0));
+           // String deez= quizzes2.get(quizNames.indexOf(quizname));
+          //  InputStream is = new ByteArrayInputStream(deez.getBytes(Charset.forName("UTF-8")));
             InputStream is = getAssets().open(quizname);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             org.w3c.dom.Document doc = dBuilder.parse(is);
-            org.w3c.dom.Element element=doc.getDocumentElement();
+            org.w3c.dom.Element element = doc.getDocumentElement();
             element.normalize();
 
             NodeList nList = doc.getElementsByTagName("question");
             questions = new String[nList.getLength()];
             answers = new String[nList.getLength()][5];
-            guesses[0]=0;
+            guesses[0] = 0;
             score.setText("Score: TBD");
-            for (int l=0; l<buttons.length; l++){
+            for (int l = 0; l < buttons.length; l++) {
                 int j = l;
                 buttons[j].setEnabled(true);
             }
 //IS THIS ON GITHUB
 
-            for (int p=0; p<nList.getLength(); p++) {
+            for (int p = 0; p < nList.getLength(); p++) {
 
                 Node node = nList.item(p);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     org.w3c.dom.Element element2 = (org.w3c.dom.Element) node;
-                    questions[p]=getValue("stem", element2);
-                    answers[p][0]=getValue("answerA", element2);
-                    answers[p][1]=getValue("answerB", element2);
-                    answers[p][2]=getValue("answerC", element2);
-                    answers[p][3]=getValue("answerD", element2);
-                    answers[p][4]=getValue("key", element2);
-                    if(!(answers[p][4].equals(answers[p][3]) || answers[p][4].equals(answers[p][2]) ||answers[p][4].equals(answers[p][1]) ||
+                    questions[p] = getValue("stem", element2);
+                    answers[p][0] = getValue("answerA", element2);
+                    answers[p][1] = getValue("answerB", element2);
+                    answers[p][2] = getValue("answerC", element2);
+                    answers[p][3] = getValue("answerD", element2);
+                    answers[p][4] = getValue("key", element2);
+                    if (!(answers[p][4].equals(answers[p][3]) || answers[p][4].equals(answers[p][2]) || answers[p][4].equals(answers[p][1]) ||
                             answers[p][4].equals(answers[p][0]))) {
                         throw new Exception("There is no correct answer"); //this doesn't work D:
                     }
@@ -121,7 +221,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
 
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         buttons[0] = (Button) findViewById(R.id.button1);
@@ -142,10 +244,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //IGNORE THIS
 
 
-
-
-        for(int a=0; a<4; a++) {
-            int k=a;
+        for (int a = 0; a < 4; a++) {
+            int k = a;
             buttons[k].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (buttons[k].getText().equals(answers[i[0]][4])) {
@@ -164,8 +264,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         guesses[0]++;
                         i[0]++;
                         next(i[0]);
-                    }
-                    else {
+                    } else {
                         text1.setText("Try Again!");
                         for (int b = 0; b < 4; b++) {
                             int j = b;
@@ -194,18 +293,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Node node = nodeList.item(0);
         return node.getNodeValue();
     }
+
     private void next(int i) {
-        if(i==questions.length){
+        if (i == questions.length) {
             text1.setText("You are done! Your score should be displayed above ^");
-            double fscore = (double)questions.length/(double)guesses[0] * 100.00;
+            double fscore = (double) questions.length / (double) guesses[0] * 100.00;
             String fscoreString = String.format("Score: %.2f%%", fscore);
             score.setText(fscoreString);
-            for (int l=0; l<buttons.length; l++){
+            for (int l = 0; l < buttons.length; l++) {
                 int j = l;
                 buttons[j].setEnabled(false);
             }
-        }
-        else {
+        } else {
             text1.setText(questions[i]);
             buttons[0].setText(answers[i][0]);
             buttons[1].setText(answers[i][1]);
@@ -219,13 +318,35 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String text = adapterView.getItemAtPosition(i).toString();
         run(text);
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    private static String extractQuiz(String html) throws IOException {
+        boolean strictMode = true;
+        String paragraphTagOpen = "<p[^>]+>";
+        String paragraphTagClose = "</p[^>]*>";
+        String quizTagOpen = "<quiz";
+        String quizTagClose = "</quiz>";
+
+
+        String quiz = html;
+        quiz = Parser.unescapeEntities(quiz, strictMode);
+        int beginQuizXml = quiz.lastIndexOf(quizTagOpen);
+        int endQuizXml = quiz.lastIndexOf(quizTagClose) + quizTagClose.length();
+
+        Validate.isTrue(beginQuizXml >= 0 && endQuizXml >= 0, " quiz not found ");
+
+        quiz = quiz.substring(beginQuizXml, endQuizXml).replaceAll(paragraphTagOpen, "")
+                .replaceAll(paragraphTagClose, "").trim();
+        return quiz;
+    }
+
+}
+    /*
     public static class Extractor {
         private static ArrayList<String> quizzes;
 
@@ -247,11 +368,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 System.out.println("connecting to "+url);
                 doc = Jsoup.connect(url).get();
                 quizzes.add( extractQuiz(doc.html()));
+                //html.setText(extractQuiz(doc.html()));
 
             }
-            System.out.println(quizzes.size()+" quizzes extracted");
+           // html.setText(quizzes.get(0));
+            //System.out.println(quizzes.size()+" quizzes extracted");
 
-        }
+        } /*
 
         private static String extractQuiz(String html) throws IOException {
             boolean strictMode = true;
@@ -273,8 +396,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     .replaceAll(paragraphTagClose, "").trim();
             return quiz;
         }
-        public static ArrayList<String> getQuizzes(){
-            return quizzes;
+        public static void getQuizzes(int i){
+            html.setText(quizzes.get(i));
+            //return quizzes.get(i);
         }
     }
     }

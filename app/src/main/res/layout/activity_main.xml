@@ -89,10 +89,10 @@
         app:layout_constraintVertical_bias="0.538" />
 
     <TextView
-        android:id="@+id/html"
+        android:id="@+id/html1"
         android:layout_width="350dp"
         android:layout_height="728dp"
-        android:text="TextView"
+        android:text="bruh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.376"

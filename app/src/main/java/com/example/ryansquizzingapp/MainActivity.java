@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +32,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -128,11 +130,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             quizNames = new ArrayList<String>();
             for(Element link:links)
             {
+
                 if(link.attr("href").contains("mobileresources/q"))
                 {
                     quizLinks.add("https://sites.google.com"+link.attr("href"));
 
                     quizNames.add(link.text());
+                }
+            }
+//String deez= quizzes2.get(quizNames.indexOf(quizname));
+            boolean sorted = false;
+            String temp;
+            String temp2;
+            while(!sorted) {
+                sorted = true;
+                for (int i = 0; i < quizNames.size() - 1; i++) {
+                    int first = Integer.parseInt(quizNames.get(i).substring(1, quizNames.get(i).length()-1));
+                    int second = Integer.parseInt(quizNames.get(i+1).substring(1, quizNames.get(i).length()-1));
+                    if (first > second) {
+                        temp = quizNames.get(i);
+                        quizNames.set(i, quizNames.get(i+1));
+                        quizNames.set(i+1, temp);
+
+                        temp2 = quizzes1.get(i);
+                        quizzes1.set(i, quizzes1.get(i+1));
+                        quizzes1.set(i+1, temp2);
+
+                        sorted = false;
+                    }
                 }
             }
             System.out.println(quizLinks.size()+" quizzes found");
@@ -180,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             quizzes2=quizzes1;
+
             //run("ryanquiz.xml1");
 
 

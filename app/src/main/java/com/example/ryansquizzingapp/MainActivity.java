@@ -140,9 +140,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
 //String deez= quizzes2.get(quizNames.indexOf(quizname));
             boolean sorted = false;
-            String temp;
-            String temp2;
-            while(!sorted) {
+            String temp = "";
+            String temp2 = "";
+            /*while(!sorted) {
                 sorted = true;
                 for (int i = 0; i < quizNames.size() - 1; i++) {
                     int first = Integer.parseInt(quizNames.get(i).substring(1, quizNames.get(i).length()-1));
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         sorted = false;
                     }
                 }
-            }
+            }*/
             System.out.println(quizLinks.size()+" quizzes found");
             quizzes1 = new ArrayList<String>();
             for(String url:quizLinks)
@@ -215,7 +215,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         try {
 
             // html1.setText(quizzes1.get(0));
-            String deez= quizzes2.get(quizNames.indexOf(quizname));
+            //String teststring = "hello";
+            //int testint = Integer.parseInt(teststring.substring(1,3));
+            //String bruh1 = String.format("Score: %i", testint);
+            int index1=0;
+            for (int i=0; i<quizzes2.size(); i++){
+                String quizstring = quizzes1.get(i);
+                String j= quizstring.substring(55, quizstring.length()-1);
+                if(quizname==j){
+                    index1=quizzes2.indexOf(quizname);
+                }
+            }
+            String deez= quizzes2.get(index1);
+            //String deez= quizzes2.get(quizNames.indexOf(quizname));
             InputStream is = new ByteArrayInputStream(deez.getBytes(Charset.forName("UTF-8")));
             //InputStream is = getAssets().open(quizname);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -230,6 +242,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             answers = new String[nList.getLength()][5];
             guesses[0] = 0;
             score.setText("Score: TBD");
+            //score.setText(bruh1);
+
             for (int l = 0; l < buttons.length; l++) {
                 int j = l;
                 buttons[j].setEnabled(true);

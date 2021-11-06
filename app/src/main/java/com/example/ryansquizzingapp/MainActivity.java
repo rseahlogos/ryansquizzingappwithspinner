@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,6 +35,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<String> quizzes1;
     ArrayList<String> quizzes2;
     ArrayList<String> quizNames;
+
+    Set<String> quizLinks;
     String changequiz;
 
     @Override
@@ -126,27 +130,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 e.printStackTrace();
             }
             Elements links =doc.select("a[href]");
-            Set<String> quizLinks = new HashSet<String>();
+
+
+            quizLinks = new LinkedHashSet<>();
+           // quizLinks = new ArrayList<String>();
             quizNames = new ArrayList<String>();
+
             for(Element link:links)
             {
 
                 if(link.attr("href").contains("mobileresources/q"))
                 {
+
                     quizLinks.add("https://sites.google.com"+link.attr("href"));
 
                     quizNames.add(link.text());
                 }
+
             }
 //String deez= quizzes2.get(quizNames.indexOf(quizname));
+            /*
             boolean sorted = false;
-            String temp = "";
-            String temp2 = "";
-            /*while(!sorted) {
+            String temp = " ";
+            String temp2 = " ";
+            while(!sorted) {
                 sorted = true;
                 for (int i = 0; i < quizNames.size() - 1; i++) {
-                    int first = Integer.parseInt(quizNames.get(i).substring(1, quizNames.get(i).length()-1));
-                    int second = Integer.parseInt(quizNames.get(i+1).substring(1, quizNames.get(i).length()-1));
+                    int first = Integer.valueOf(quizNames.get(i).substring(1, quizNames.get(i).length()-1));
+                    int second = Integer.valueOf(quizNames.get(i+1).substring(1, quizNames.get(i).length()-1));
                     if (first > second) {
                         temp = quizNames.get(i);
                         quizNames.set(i, quizNames.get(i+1));
@@ -219,15 +230,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             //int testint = Integer.parseInt(teststring.substring(1,3));
             //String bruh1 = String.format("Score: %i", testint);
             int index1=0;
+            /*
             for (int i=0; i<quizzes2.size(); i++){
                 String quizstring = quizzes1.get(i);
                 String j= quizstring.substring(55, quizstring.length()-1);
                 if(quizname==j){
                     index1=quizzes2.indexOf(quizname);
                 }
-            }
-            String deez= quizzes2.get(index1);
-            //String deez= quizzes2.get(quizNames.indexOf(quizname));
+            } */
+
+            //String deez= quizzes2.get(index1);
+            String deez= quizzes2.get(quizNames.indexOf(quizname));
             InputStream is = new ByteArrayInputStream(deez.getBytes(Charset.forName("UTF-8")));
             //InputStream is = getAssets().open(quizname);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

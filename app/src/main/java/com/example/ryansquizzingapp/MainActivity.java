@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Button buttons[] = {null, null, null, null};
     TextView text1;
     TextView score;
-    static TextView html1;
+
     int guesses[] = {0};
     boolean flag1= false;
     Button change;
@@ -72,29 +72,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //extractor test
+
         new Content().execute();
-        //
-        /*
-        <item>andyquiz1.xml</item>
-        <item>andyquiz2.xml</item>
-        <item>blayquiz1.xml</item>
-        <item>blayquiz2.xml</item>
-        <item>minchanquiz1.xml</item>
-        <item>minchanquiz2.xml</item>
-        <item>ryanquiz1.xml</item>
-        <item>ryanquiz2.xml</item>
-        <item>ycquiz1.xml</item>
-        <item>ycquiz2.xml</item>
-         */
+
 
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quizzes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        //run("ryanquiz1.xml");
-        html1 = (TextView) findViewById(R.id.html1);
+
+
         change = (Button) findViewById(R.id.change);
 
 
@@ -103,15 +91,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 run(changequiz);
             }
         });
-        /*
-        Ion.with(getApplicationContext()).load("https://sites.google.com/asianhope.org/mobileresources").asString().setCallback(new FutureCallback<String>() {
-            @Override
-            public void onCompleted(Exception e, String result) {
 
-                html.setText(result);
-            }
-        }); */
-        // Extractor.getQuizzes(1);
     }
     private class Content extends AsyncTask<Void, Void, Void> {
 
@@ -148,29 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
 
             }
-//String deez= quizzes2.get(quizNames.indexOf(quizname));
-            /*
-            boolean sorted = false;
-            String temp = " ";
-            String temp2 = " ";
-            while(!sorted) {
-                sorted = true;
-                for (int i = 0; i < quizNames.size() - 1; i++) {
-                    int first = Integer.valueOf(quizNames.get(i).substring(1, quizNames.get(i).length()-1));
-                    int second = Integer.valueOf(quizNames.get(i+1).substring(1, quizNames.get(i).length()-1));
-                    if (first > second) {
-                        temp = quizNames.get(i);
-                        quizNames.set(i, quizNames.get(i+1));
-                        quizNames.set(i+1, temp);
 
-                        temp2 = quizzes1.get(i);
-                        quizzes1.set(i, quizzes1.get(i+1));
-                        quizzes1.set(i+1, temp2);
-
-                        sorted = false;
-                    }
-                }
-            }*/
             System.out.println(quizLinks.size()+" quizzes found");
             quizzes1 = new ArrayList<String>();
             for(String url:quizLinks)
@@ -201,9 +159,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         .replaceAll(paragraphTagClose, "").trim();
                 //
                 quizzes1.add(quiz);
-                //html1.setText(quizNames.get(0));
-                //html1.setText(quizzes1.get(0));
-                //html.setText(extractQuiz(doc.html()));
+
 
             }
 
@@ -217,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             super.onPostExecute(aVoid);
             quizzes2=quizzes1;
 
-            //run("ryanquiz.xml1");
+
 
 
         }
@@ -225,24 +181,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void run(String quizname) {
         try {
 
-            // html1.setText(quizzes1.get(0));
-            //String teststring = "hello";
-            //int testint = Integer.parseInt(teststring.substring(1,3));
-            //String bruh1 = String.format("Score: %i", testint);
-            int index1=0;
-            /*
-            for (int i=0; i<quizzes2.size(); i++){
-                String quizstring = quizzes1.get(i);
-                String j= quizstring.substring(55, quizstring.length()-1);
-                if(quizname==j){
-                    index1=quizzes2.indexOf(quizname);
-                }
-            } */
 
-            //String deez= quizzes2.get(index1);
+
             String deez= quizzes2.get(quizNames.indexOf(quizname));
             InputStream is = new ByteArrayInputStream(deez.getBytes(Charset.forName("UTF-8")));
-            //InputStream is = getAssets().open(quizname);
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -255,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             answers = new String[nList.getLength()][5];
             guesses[0] = 0;
             score.setText("Score: TBD");
-            //score.setText(bruh1);
+
 
             for (int l = 0; l < buttons.length; l++) {
                 int j = l;
@@ -296,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         score = (TextView) findViewById(R.id.score);
         final int[] i = {0};
         next(i[0]);
-        // final int[] guesses={0};
+
 
         //CODE THAT IM TOO LAZY TO FIND A FIX FOR
         buttons[0].setBackgroundColor(Color.CYAN);
@@ -409,216 +352,3 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 }
-    /*
-    public static class Extractor {
-        private static ArrayList<String> quizzes;
-
-        public static void main(String[] args) throws IOException {
-            Document doc = Jsoup.connect("https://sites.google.com/asianhope.org/mobileresources/home").get();
-            Elements links =doc.select("a[href]");
-            Set<String> quizLinks = new HashSet<String>();
-            for(Element link:links)
-            {
-                if(link.attr("href").contains("mobileresources/q"))
-                {
-                    quizLinks.add("https://sites.google.com"+link.attr("href"));
-                }
-            }
-            System.out.println(quizLinks.size()+" quizzes found");
-            quizzes = new ArrayList<String>();
-            for(String url:quizLinks)
-            {
-                System.out.println("connecting to "+url);
-                doc = Jsoup.connect(url).get();
-                quizzes.add( extractQuiz(doc.html()));
-                //html.setText(extractQuiz(doc.html()));
-
-            }
-           // html.setText(quizzes.get(0));
-            //System.out.println(quizzes.size()+" quizzes extracted");
-
-        } /*
-
-        private static String extractQuiz(String html) throws IOException {
-            boolean strictMode = true;
-            String paragraphTagOpen = "<p[^>]+>";
-            String paragraphTagClose = "</p[^>]*>";
-            String quizTagOpen = "<quiz";
-            String quizTagClose ="</quiz>";
-
-
-
-            String quiz = html;
-            quiz = Parser.unescapeEntities(quiz, strictMode);
-            int beginQuizXml = quiz.lastIndexOf(quizTagOpen);
-            int endQuizXml = quiz.lastIndexOf(quizTagClose) + quizTagClose.length();
-
-            Validate.isTrue(beginQuizXml>=0&&endQuizXml>=0," quiz not found ");
-
-            quiz = quiz.substring(beginQuizXml, endQuizXml).replaceAll(paragraphTagOpen, "")
-                    .replaceAll(paragraphTagClose, "").trim();
-            return quiz;
-        }
-        public static void getQuizzes(int i){
-            html.setText(quizzes.get(i));
-            //return quizzes.get(i);
-        }
-    }
-    }
-
-
-//emergency code incase im bad at life
-/*
-    String[] questionsold = {
-            "What is 9 + 10?",
-            "What is 1+1?",
-            "What is 2+3?",
-            "What is 9x9?",
-            "What is 9+9?",
-            "What is 9/9",
-            "What is sqrt9?",
-            "Who is Mr. Skogens favorite student?",
-            "Who is Mr Skogens favorite Logos teacher?",
-            "Who is going to get a 100% on this assignment?"
-    };
-    String[][] answersold = {
-            {"21", "19", "20", "910", "19"}, //SET ANSWER TO 19
-            {"1", "2", "11", "0", "2"},
-            {"5", "23", "2+3-1+1-2", "-5", "5"},
-            {"18", "81.1", "99", "81", "81"},
-            {"18", "81.1", "99", "81", "18"},
-            {"undefined", "0", "1", "9", "1"},
-            {"3", "-3.1", "81", "1", "3"},
-            {"Bryant", "Ryan", "Yejin", "Andy", "Ryan"},
-            {"Ms. Mendoza", "Mr. Seah", "Mr. Skogen", "Mr. Barrett", "Ms. Mendoza"},
-            {"Bryant", "Ryan", "Yejin", "Andy", "Ryan"}
-    };
-
-
- */
-    /*
-String bruh= String.format("%s", guesses[0]);
-                    score.setText(bruh);
-*/
-
-/* buttons[1].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(buttons[1].getText().equals(answers[i[0]][4])){
-                    text1.setText("Correct Answer!");
-                    for(int b=0; b<4; b++) {
-                        int j=b;
-                        buttons[j].setClickable(false);
-                        buttons[j].postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                buttons[j].setClickable(true);
-                                guesses[0]++;
-                                i[0]++;
-                                next(i[0]);
-                            }
-                        }, 1000);
-                    }
-
-                }
-                else{
-                    text1.setText("Try Again!");
-                    for(int b=0; b<4; b++) {
-                        int j=b;
-                        buttons[j].setClickable(false);
-                        buttons[j].setBackgroundColor(Color.RED);
-                        buttons[j].postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                buttons[j].setClickable(true);
-                                text1.setText(questions[j]);
-                                buttons[j].setBackgroundColor(Color.CYAN);
-                                guesses[0]++;
-                            }
-                        }, 1000);
-                    }
-                }
-            }
-        });
-
-        buttons[2].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(buttons[2].getText().equals(answers[i[0]][4])){
-                    text1.setText("Correct Answer!");
-                    for(int b=0; b<4; b++) {
-                        int j=b;
-                        buttons[j].setClickable(false);
-                        buttons[j].postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                buttons[j].setClickable(true);
-                                guesses[0]++;
-                                i[0]++;
-                                next(i[0]);
-                            }
-                        }, 1000);
-                    }
-
-                }
-                else{
-                    text1.setText("Try Again!");
-                    for(int b=0; b<4; b++) {
-                        int j=b;
-                        buttons[j].setClickable(false);
-                        buttons[j].setBackgroundColor(Color.RED);
-                        buttons[j].postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                buttons[j].setClickable(true);
-                                text1.setText(questions[j]);
-                                buttons[j].setBackgroundColor(Color.CYAN);
-                                guesses[0]++;
-                            }
-                        }, 1000);
-                    }
-                }
-            }
-        });
-        buttons[3].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(buttons[3].getText().equals(answers[i[0]][4])){
-                    text1.setText("Correct Answer!");
-                    for(int b=0; b<4; b++) {
-                        int j=b;
-                        buttons[j].setClickable(false);
-                        buttons[j].postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                buttons[j].setClickable(true);
-                                guesses[0]++;
-                                i[0]++;
-                                next(i[0]);
-                            }
-                        }, 1000);
-                    }
-
-                }
-                else{
-                    text1.setText("Try Again!");
-                    for(int b=0; b<4; b++) {
-                        int j=b;
-                        buttons[j].setClickable(false);
-                        buttons[j].setBackgroundColor(Color.RED);
-                        buttons[j].postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                buttons[j].setClickable(true);
-                                text1.setText(questions[j]);
-                                buttons[j].setBackgroundColor(Color.CYAN);
-                                guesses[0]++;
-                            }
-                        }, 1000);
-                    }
-                }
-            }
-        }); */
